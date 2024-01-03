@@ -5,17 +5,14 @@ html_text = requests.get('https://www.timesjobs.com/candidate/job-search.html?se
 soup = BeautifulSoup(html_text, 'lxml')
 jobs = soup.find_all('li', class_ = 'clearfix job-bx wht-shd-bx')
 for job in jobs:
-
-    company_name = job.find('h3', class_ = 'joblist-comp-name').text.replace(' ', '').strip()
-    skills = job.find('span', class_ = 'srp-skills').text.replace(' ', '').replace(',', ', ').strip()
     published_date = job.find('span', class_ = 'sim-posted').span.text.strip()
-
-    if(published_date.__contains__('few')):
-        print(f'''
-        Company Name: {company_name}
-
-        Required Skills: {skills}
-        ''')
+    if 'few' in published_date:
+        company_name = job.find('h3', class_ = 'joblist-comp-name').text.replace(' ', '')
+        skills = job.find('span', class_ = 'srp-skills').text.replace(' ', '').replace(',', ', ')
+        more_info = job.header.h2.a['href']
+        print(f'Company Name: {company_name.strip()}')
+        print(f'Required Skills: {skills.strip()}')
+        print(f'More Info: {more_info}')
         print('')
 
 # with open('web_scraper/home.html', 'r') as html_file:
