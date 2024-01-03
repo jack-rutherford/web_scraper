@@ -159,4 +159,4 @@ testem.log
 .DS_Store
 Thumbs.db
 
-web_scraper/posts/*.txt
+posts/*.txt
