@@ -158,3 +158,5 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+web_scraper/posts/*.txt
